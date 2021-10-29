@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+	{{ parent()}}
+{% endblock %}
+{% block body %}
+	<div class="wrap">
+		<div class="container mt-4">
+			<div class="row">
+				<div class="col-sm">
+					<div>Propriétaire :
+						{{ id.nom }}
+						-
+						{{ id.prenom }}</div>
+					<div>Restaurant :
+						<a href="{{path('single-restaurant', {id: id.restaurant.ville.id})}}">{{ id.restaurant.nom }}</a>
+					</div>
+					<div>{{ id.restaurant.adresse }}</div>
+
+					<div><img src="{{ id.restaurant.image }}" alt=""></div>
+				</div>
+
+			</ol>
+		</div>
+	</div>
+</div>{% endblock %}

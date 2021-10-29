@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+	{{ parent()}}
+{% endblock %}
+{% block body %}
+	<div class="wrap">
+		<div class="container mt-4">
+			{% if villes is empty %}
+				<div class="alert alert-danger" role="alert">
+					Aucune villes trouvées !
+				</div>
+			{% else %}
+				<div class="alert alert-success" role="alert">
+					{{ villes | length }}
+					ville(s) trouvée(s) !
+				</div>
+
+			{% endif %}
+			<div class="row">
+				<ol>
+					{% for ville in villes|sort((a, b) => a.nom <=> b.nom) %}
+						<li>
+
+							<div>La ville de
+								<a href="{{path('single-ville', {id: ville.id})}}">
+									{{ ville.nom }}</a>
+								a
+								{{ ville.restaurant | length }}
+								restaurant(s)</div>
+						</li>
+					{% endfor %}
+				</ol>
+			</div>
+		</div>
+	</div>
+{% endblock %}

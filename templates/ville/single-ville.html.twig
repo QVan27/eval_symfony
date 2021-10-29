@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+	{{ parent()}}
+{% endblock %}
+{% block body %}
+	<div class="wrap">
+		<div class="container mt-4">
+			<div class="row">
+				{% for restaurant in id.restaurant|sort((a, b) => a.nom <=> b.nom) %}
+					<div class="col-sm">
+						<div>Restaurant :
+							<a href="{{path('single-restaurant', {id: restaurant.ville.id})}}">{{ restaurant.nom }}</a>
+						</div>
+						<div>{{ restaurant.adresse }}</div>
+						<div>Propriétaire :
+							<a href="{{path('single-proprietaire', {id: restaurant.proprietaire.id})}}">
+								{{ restaurant.proprietaire.nom }}
+								-
+								{{ restaurant.proprietaire.prenom }}</a>
+						</div>
+						<div><img src="{{ restaurant.image }}" alt=""></div>
+					</div>
+				{% endfor %}
+			</ol>
+		</div>
+	</div>
+</div>{% endblock %}

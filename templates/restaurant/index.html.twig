@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+	{{ parent()}}
+{% endblock %}
+{% block body %}
+	<div class="wrap">
+		<div class="container mt-4">
+			{% if restaurants is empty %}
+				<div class="alert alert-danger" role="alert">
+					Aucun restaurants trouvés !
+				</div>
+			{% else %}
+				<div class="alert alert-success" role="alert">
+					{{ restaurants | length }}
+					restaurant(s) trouvé(s) !
+				</div>
+
+			{% endif %}
+			<div class="row">
+				{% for restaurant in restaurants|sort((a, b) => a.nom <=> b.nom) %}
+					<div class="col-sm">
+						<div>Restaurant :
+							<a href="{{path('single-restaurant', {id: restaurant.id})}}">{{ restaurant.nom }}</a>
+						</div>
+						<div>Adresse :
+							{{ restaurant.adresse }}</div>
+						<div>Ville :
+							{{ restaurant.ville.nom }}</div>
+
+						<div>
+							Propriétaire :
+							<a href="{{path('single-proprietaire', {id: restaurant.proprietaire.id})}}">
+								<p>Nom / Prénom :
+									{{ restaurant.proprietaire.nom }}
+									/
+									{{ restaurant.proprietaire.prenom }}</p>
+							</a>
+							<p>Né : le
+								{{ restaurant.proprietaire.dateNaissance|date("m/d/Y") }}</p>
+						</div>
+						<div>
+							<a href="{{path('single-restaurant', {id: restaurant.id})}}">
+								Cliquer sur l'image
+								<img src="{{ restaurant.image }}" alt="">
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
