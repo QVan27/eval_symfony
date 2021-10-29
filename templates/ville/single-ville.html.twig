@@ -12,7 +12,7 @@
 				{% for restaurant in id.restaurant|sort((a, b) => a.nom <=> b.nom) %}
 					<div class="col-sm">
 						<div>Restaurant :
-							<a href="{{path('single-restaurant', {id: restaurant.ville.id})}}">{{ restaurant.nom }}</a>
+							<a href="{{path('single-restaurant', {id: restaurant.id})}}">{{ restaurant.nom }}</a>
 						</div>
 						<div>{{ restaurant.adresse }}</div>
 						<div>Propriétaire :
