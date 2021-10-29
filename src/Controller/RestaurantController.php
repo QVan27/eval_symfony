@@ -23,7 +23,6 @@ class RestaurantController extends AbstractController
         } else {
             $restaurants = $repository->findAll($nom);
         }
-        dump($restaurants);
         return $this->render('restaurant/index.html.twig', [
             'restaurants' => $restaurants,
         ]);
@@ -36,7 +35,6 @@ class RestaurantController extends AbstractController
         $id = $repository->findOneBy([
             'id' => $id,
         ]);
-        dump($id);
         return $this->render('restaurant/single-restaurant.html.twig', ["id" => $id]);
     }
 }

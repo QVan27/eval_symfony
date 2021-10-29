@@ -24,7 +24,6 @@ class ProprietaireController extends AbstractController
         $id = $repository->findOneBy([
             'id' => $id,
         ]);
-        dump($id);
         return $this->render('proprietaire/single-proprietaire.html.twig', ["id" => $id]);
     }
 }

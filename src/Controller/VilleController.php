@@ -23,8 +23,6 @@ class VilleController extends AbstractController
         } else {
             $villes = $repository->findAll($nom);
         }
-        dump($nom);
-        
         return $this->render('ville/index.html.twig', [
             'villes' => $villes,
         ]);
@@ -37,7 +35,6 @@ class VilleController extends AbstractController
         $id = $repository->findOneBy([
             'id' => $id,
         ]);
-        dump($id);
         return $this->render('ville/single-ville.html.twig', ["id" => $id]);
     }
 }
